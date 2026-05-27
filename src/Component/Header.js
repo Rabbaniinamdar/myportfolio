@@ -3,7 +3,7 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { SiLeetcode } from "react-icons/si";
 import { IoMdMail } from 'react-icons/io';
 import blob from '../images/blob.svg';
-import resume from '../images/resume.pdf';
+import resume from '../images/MahammadRabbani.pdf';
 import rabbani from '../images/rabbani-removebg-preview.png';
 import '../App.css';
 import '../CSS/Header.css';
@@ -26,7 +26,7 @@ const Header = () => {
                                 </a>
                             </div>
                             <div className="item2">
-                                <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/mahmmed-rabbani-087169190">
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/mohammed-rabbani-071168190">
                                     <FaLinkedin style={{ color: "#171515 " }} />
                                 </a>
                             </div>
@@ -36,7 +36,7 @@ const Header = () => {
                                 </a>
                             </div>
                             <div className="item4">
-                                <a target="_blank" rel="noopener noreferrer" href="https://github.com/Rabbaniinamdar">
+                                <a target="_blank" rel="noopener noreferrer" href="https://leetcode.com/u/mahammedrabbani822931/">
                                     <SiLeetcode style={{ color: "#171515" }} />
                                 </a>
                             </div>

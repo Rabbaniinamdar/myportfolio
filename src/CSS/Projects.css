@@ -14,6 +14,9 @@
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+
+  /* ✅ FIX: overlay-content is position:absolute — it needs this anchor */
+  position: relative;
 }
 
 .portfolio .box-container .box img {
@@ -21,12 +24,37 @@
   width: 100%;
   object-fit: cover;
   filter: brightness(100%);
+  transition: filter 0.3s ease;
 }
 
 .portfolio .box-container .box:hover img {
+  filter: brightness(30%);
+}
+
+/* ── Placeholder for projects with no screenshot ── */
+.placeholder-img {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a0030, #000c48);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.3s ease;
+}
+
+.placeholder-img span {
+  font-size: 6rem;
+  color: #d200d2;
+  font-weight: 900;
+  opacity: 0.6;
+}
+
+.portfolio .box-container .box:hover .placeholder-img {
   filter: brightness(40%);
 }
 
+/* ── Overlay ─────────────────────────────────────── */
 .overlay-content {
   position: absolute;
   top: 0;
@@ -40,10 +68,9 @@
   flex-direction: column;
   opacity: 0;
   transition: opacity 0.3s ease;
-}
 
-.overlay-content {
-  color: rgb(255, 255, 255);
+  /* sit above the image/placeholder */
+  z-index: 2;
 }
 
 .box:hover .overlay-content {
@@ -51,86 +78,103 @@
 }
 
 .portfolio .box-container .box:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
-.project-container {
-  margin: 4rem;
+/* ── Featured badge ─────────────────────────────── */
+.project-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #d200d2;
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.3rem 1rem;
+  border-radius: 2rem;
+  z-index: 3;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  pointer-events: none;
 }
 
-.project-container .project {
-  color: #000000;
-  font-size: 1.7rem;
-  line-height: 2.5rem;
+.box-featured {
+  border: 2px solid rgba(210, 0, 210, 0.5);
 }
 
-.project-container h1 {
-  color: var(--yellow);
-  padding-bottom: 1.5rem;
-}
-
-.project-container :nth-child(3) {
-  color: rgb(0, 0, 0);
-  margin-top: 1.6rem;
-}
+/* ── Project overlay content ────────────────────── */
 .project-discription {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: 10px;
+  padding: 0 1rem;
 }
+
 .project-discription h1 {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
+  margin-bottom: 6px;
 }
+
 .project-discription p {
-  font-size: 13px;
-  margin: 10px;
+  font-size: 12px;
   font-weight: bold;
   color: rgb(47, 255, 245);
-  line-height: 16px;
+  line-height: 1.5;
   text-align: center;
+  margin: 6px 0;
 }
+
+/* ── Tech tags inside overlay ───────────────────── */
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.6rem;
+}
+
+.project-tech-tag {
+  background: rgba(210, 0, 210, 0.3);
+  border: 1px solid rgba(210, 0, 210, 0.6);
+  color: #f0b0f0;
+  font-size: 1rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 2rem;
+}
+
+/* ── Buttons ────────────────────────────────────── */
 .box .project_link {
   display: flex;
   gap: 10px;
+  margin-top: 10px;
 }
+
 .project_link button {
   background-color: rgb(221, 2, 221);
-  padding: 10px;
+  padding: 8px 14px;
   border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
+
+.project_link button:hover {
+  background-color: #9a009a;
+}
+
 .project_link button a {
-  padding: 10px;
   color: #fff;
-}
-.cert h1 {
-  font-size: 20px;
-  line-height: 4rem;
+  font-size: 13px;
 }
 
-.project h4 {
-  color: orange;
-}
-
-.cert p {
-  color: white;
-}
-
-.certi-link {
-  font-size: 12px;
-}
-
+/* ── Responsive ─────────────────────────────────── */
 @media screen and (max-width: 600px) {
-  .project-discription h1 {
-    font-size: 15px;
+  .portfolio .box-container .box {
+    width: 90vw;
+    height: 22rem;
   }
-  .project-discription p {
-    font-size: 11px;
-  }
-  .project_link button {
-    padding: 5px;
-  }
+  .project-discription h1 { font-size: 15px; }
+  .project-discription p  { font-size: 11px; }
+  .project_link button    { padding: 5px 10px; }
 }

@@ -1,0 +1,20 @@
+/* ─── Base hidden state ─────────────────────────────────────── */
+.sr-wrapper {
+    opacity: 0;
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+/* ─── Direction variants (hidden → revealed) ─────────────────── */
+.sr-up     { transform: translateY(50px); }
+.sr-left   { transform: translateX(-60px); }
+.sr-right  { transform: translateX(60px); }
+.sr-fade   { transform: none; }
+
+/* ─── Revealed state ─────────────────────────────────────────── */
+.sr-visible {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+}

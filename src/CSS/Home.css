@@ -11,8 +11,9 @@
 }
 
 .home h1 {
-  font-size: 5rem;
+  font-size: 4rem;
   color: #020000;
+  min-height: 6rem; /* prevents layout jump while text changes */
 }
 
 .home h1 span {
@@ -25,29 +26,36 @@
   padding: 1rem 0;
 }
 
+/* ─── Typewriter text + cursor ─────────────────────────────── */
+.typewriter-text {
+  color: purple;
+  display: inline;
+}
+
+/*
+  Cursor is a plain <span> rendered in JSX — no CSS animation needed
+  for the text itself. Just blink the cursor character.
+*/
+.typewriter-cursor {
+  display: inline-block;
+  color: purple;
+  font-weight: 100;
+  margin-left: 2px;
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─── About / Counter ──────────────────────────────────────── */
 .about .row {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   padding: 1rem 0;
-}
-
-.about .row .info {
-  flex: 1 1 48rem;
-  padding: 2rem 1rem;
-  padding-left: 6rem;
-}
-
-.about .row .info h3 {
-  font-size: 2rem;
-  padding: 1rem 0;
-  font-weight: normal;
-}
-
-.about .row .info h3 span {
-  color: #000000;
-  padding: 0 0.5rem;
 }
 
 .about .row .counter {
@@ -70,6 +78,7 @@
 
 .about .row .counter .box span {
   font-size: 4rem;
+  font-weight: 500;
   color: rgb(228, 0, 228);
 }
 
@@ -77,293 +86,58 @@
   font-size: 2rem;
   color: #eeeeee;
 }
+
 .about .row .counter .content:hover {
   transform: scale(1.2);
 }
 
-.typing-container {
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid #000;
-  animation: typing 3s steps(20) infinite, blink-caret 2s step-end infinite;
-  width: 0;
-  overflow: hidden;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 125%;
-  }
-}
-
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #000;
-  }
-}
+/* ─── Wave emoji ───────────────────────────────────────────── */
 .wave {
-  animation: wave-animation 2.5s infinite 70% 70%;
+  animation: wave-animation 2.5s infinite;
   display: inline-block;
   font-size: 3.5rem;
 }
 
 @keyframes wave-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(14deg);
-  }
-  20% {
-    transform: rotate(-8deg);
-  }
-  30% {
-    transform: rotate(14deg);
-  }
-  40% {
-    transform: rotate(-4deg);
-  }
-  50% {
-    transform: rotate(10deg);
-  }
-  60% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
+  0%   { transform: rotate(0deg);   }
+  10%  { transform: rotate(14deg);  }
+  20%  { transform: rotate(-8deg);  }
+  30%  { transform: rotate(14deg);  }
+  40%  { transform: rotate(-4deg);  }
+  50%  { transform: rotate(10deg);  }
+  60%  { transform: rotate(0deg);   }
+  100% { transform: rotate(0deg);   }
 }
-@media (max-width: 400px) {
-  .typing-container {
-    font-size: 20px;
-  }
-}
-@media screen and (max-width: 600px) {
-  .typing-container {
-    font-size: 20px;
-  }
-}
-@media (max-width: 1900px) {
-  section {
-    min-height: 40vh;
-  }
-}
-@media (max-width: 1200px) {
-  html {
-    font-size: 55%;
-  }
 
-  .home {
-    padding: 10rem 4rem;
-  }
-  section {
-    min-height: 35vh;
-  }
+/* ─── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  html { font-size: 55%; }
+  .home { padding: 10rem 4rem; }
+  section { min-height: 35vh; }
 }
 
 @media (max-width: 991px) {
-  header {
-    left: -120%;
-  }
-
-  #menu_bar {
-    display: block;
-    background-color: rgb(197, 0, 197);
-  }
-
-  header.toggle {
-    left: 0%;
-  }
-
-  body {
-    padding: 0;
-  }
-  section {
-    min-height: 40vh;
-  }
+  header { left: -120%; }
+  #menu_bar { display: block; background-color: rgb(197, 0, 197); }
+  header.toggle { left: 0%; }
+  body { padding: 0; }
+  section { min-height: 40vh; }
 }
 
 @media (max-width: 700px) {
-  html {
-    font-size: 50%;
-  }
-  section {
-    min-height: 30vh;
-  }
-  .nav {
-    display: none;
-  }
-  .typed {
-    font-size: 30px;
-  }
+  html { font-size: 50%; }
+  section { min-height: 30vh; }
+  .home h1 { font-size: 3.5rem; }
+  .typewriter-text { font-size: 3rem; }
 }
 
 @media (max-width: 400px) {
-  .typed {
-    font-size: 20px;
-  }
-  header {
-    width: 100vw;
-    height: 70vh;
-  }
-  section {
-    min-height: 40vh;
-  }
-
-  .heading {
-    margin: 0 3rem;
-  }
-  .google-map {
-    margin-top: 20px;
-  }
-
-  .education .box-container .box {
-    width: 100%;
-  }
-
-  .portfolio .box-container .box {
-    width: 100%;
-  }
-
-  .contact .row form {
-    margin: 3rem 0;
-  }
-}
-
-.portfolio-card {
-  margin: 15px;
-}
-.wrapper {
-  max-width: 1100px;
-  width: 100%;
-  position: relative;
-}
-.wrapper i {
-  top: 40%;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
-  font-size: 1.25rem;
-  position: absolute;
-  text-align: center;
-  line-height: 50px;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
-  transform: translateY(-50%);
-  transition: transform 0.1s linear;
-}
-.wrapper i:active {
-  transform: translateY(-50%) scale(0.85);
-}
-.wrapper i:first-child {
-  left: -22px;
-}
-.wrapper i:last-child {
-  right: -22px;
-}
-.wrapper .carousel {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% / 3) - 12px);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 16px;
-  border-radius: 8px;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-.heading-card {
-  margin: 25px;
-}
-.carousel::-webkit-scrollbar {
-  display: none;
-}
-.carousel.no-transition {
-  scroll-behavior: auto;
-}
-.carousel.dragging {
-  scroll-snap-type: none;
-  scroll-behavior: auto;
-}
-.carousel.dragging .card {
-  cursor: grab;
-  user-select: none;
-}
-.carousel :where(.card, .img) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.carousel .card {
-  scroll-snap-align: start;
-  height: 342px;
-  list-style: none;
-  background: #000000;
-  cursor: pointer;
-  padding-bottom: 15px;
-  flex-direction: column;
-  border-radius: 8px;
-}
-
-.card .img img {
-  width: 27rem;
-  height: 20rem;
-  object-fit: cover;
-  border: 4px solid #fff;
-}
-.carousel .card h2 {
-  font-weight: 500;
-  font-size: 1.56rem;
-  text-align: center;
-  color: purple;
-  margin: 30px 10px 5px;
-}
-.carousel .card span {
-  color: #ffffff;
-  font-size: 1.31rem;
-}
-
-@media screen and (max-width: 900px) {
-  .wrapper .carousel {
-    grid-auto-columns: calc((100% / 2) - 9px);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .wrapper .carousel {
-    grid-auto-columns: 100%;
-  }
-  .card .img img {
-    width: 40rem;
-    height: 30rem;
-  }
-}
-#button {
-  display: inline-block;
-  background-color: purple;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  border-radius: 4px;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-}
-#button:active {
-  background-color: #555;
-}
-
-@media (min-width: 500px) {
-  #button {
-    margin: 30px;
-  }
+  .home h1 { font-size: 2.8rem; }
+  .typewriter-text { font-size: 2.5rem; }
+  header { width: 100vw; }
+  section { min-height: 40vh; }
+  .heading { margin: 0 3rem; }
+  .education .box-container .box { width: 100%; }
+  .portfolio .box-container .box { width: 100%; }
+  .contact .row form { margin: 3rem 0; }
 }
